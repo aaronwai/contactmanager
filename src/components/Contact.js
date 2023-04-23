@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types"; //impt as short cut
+
 // Method 1 : normal props with this.pros
 // class Contact extends Component {
 //   render() {
@@ -18,6 +20,13 @@ import React, { Component } from "react";
 
 // Method 2 : destructure the this.props
 class Contact extends Component {
+  //  method 2 : use static to write PropTypes and default propTypes values
+  static propTypes = {
+    name: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    phone: PropTypes.string.isRequired,
+  };
+
   render() {
     const { name, email, phone } = this.props;
     return (
@@ -32,4 +41,10 @@ class Contact extends Component {
   }
 }
 
+// Method 1 : noraml way to write the PropTypes
+// Contact.PropTypes = {
+//   name: PropTypes.string.isRequired,
+//   email: PropTypes.string.isRequired,
+//   phone: PropTypes.string.isRequired,
+// };
 export default Contact;
