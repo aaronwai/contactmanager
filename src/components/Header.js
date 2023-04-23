@@ -38,7 +38,7 @@ Header.defaultProps = {
   branding: "My App",
 };
 
-Header.PropTypes = {
+Header.propTypes = {
   branding: PropTypes.string.isRequired,
 };
 export default Header;
