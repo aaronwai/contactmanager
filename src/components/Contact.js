@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types"; //impt as short cut
+import "./contact.css";
 
 // Method 1 : normal props with this.pros
 // class Contact extends Component {

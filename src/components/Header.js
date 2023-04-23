@@ -1,5 +1,6 @@
 import React from "react";
-import PropTypes from "prop-type";
+import PropTypes from "prop-types";
+
 // Method 1 : normal way
 // function Header(props) {
 //   return (
@@ -15,11 +16,15 @@ const Header = (props) => {
   const { branding } = props;
   return (
     <div>
-      <h1>{branding}</h1>
+      <h1 style={headingStyle}>{branding}</h1>
     </div>
   );
 };
 
+const headingStyle = {
+  color: "green",
+  fontSize: "50px",
+};
 Header.defaultProps = {
   branding: "My App",
 };
