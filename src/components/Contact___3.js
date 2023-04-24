@@ -7,10 +7,16 @@ class Contact extends Component {
     contact: PropTypes.object.isRequired,
   };
   state = {};
-  // solution 3 : convert the event function to arrow function, there is no this within the arrow function, this is referring to the upper function level object
-  onShowClick = () => {
+  //   solution 2 : add constructor function, if no binding at the event, this is not a good way because set state within the constructor function
+  constructor() {
+    super();
+    this.state = {};
+    this.onShowClick = this.onShowClick.bind(this);
+  }
+
+  onShowClick() {
     console.log(this.state);
-  };
+  }
   render() {
     const { name, email, phone } = this.props.contact;
     return (

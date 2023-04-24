@@ -7,10 +7,10 @@ class Contact extends Component {
     contact: PropTypes.object.isRequired,
   };
   state = {};
-  // solution 3 : convert the event function to arrow function, there is no this within the arrow function, this is referring to the upper function level object
-  onShowClick = () => {
+  onShowClick() {
+    // this is return error, because this is undefined, onShowClick is not react Component's lifecycle method ，
     console.log(this.state);
-  };
+  }
   render() {
     const { name, email, phone } = this.props.contact;
     return (
