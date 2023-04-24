@@ -18,13 +18,25 @@ export class Contacts extends Component {
       },
     ],
   };
-  //   instead of long variables list into the contact.js, we use contact as object passing into the contact.js
+
+  deleteContact = (id) => {
+    // destructure the contact
+    const { contacts } = this.state;
+    const newContacts = contacts.filter((contact) => contact.id !== id);
+    this.setState({ contacts: newContacts });
+    console.log(id);
+  };
+
   render() {
     const { contacts } = this.state;
     return (
       <React.Fragment>
         {contacts.map((contact) => (
-          <Contact key={contact.id} contact={contact} />
+          <Contact
+            key={contact.id}
+            contact={contact}
+            deleteClickHandler={this.deleteContact.bind(this, contact.id)}
+          />
         ))}
       </React.Fragment>
     );
