@@ -1,17 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
-// Method 1 : normal way
-// function Header(props) {
-//   return (
-//     <div>
-//       <h1>{props.branding}</h1>
-//     </div>
-//   );
-// }
-// export default Header;
-
-//  Method 2 : use destructure and arrow functions
 const Header = (props) => {
   const { branding } = props;
   return (
@@ -23,9 +13,20 @@ const Header = (props) => {
         <div>
           <ul className='navbar-nav mr-auto'>
             <li className='nav-item'>
-              <a href='/' className='nav-link'>
+              <Link to='/' className='nav-link'>
+                <i className='fas fa-home'></i>
                 Home
-              </a>
+              </Link>
+            </li>
+            <li className='nav-item'>
+              <Link to='/contact/add' className='nav-link'>
+                <i className='fas fa-plus'></i> Add
+              </Link>
+            </li>
+            <li className='nav-item'>
+              <Link to='/about' className='nav-link'>
+                <i className='fas fa-question'></i>About
+              </Link>
             </li>
           </ul>
         </div>

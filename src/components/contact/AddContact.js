@@ -41,6 +41,8 @@ class AddContact extends Component {
       phone: "",
       errors: {},
     });
+    // after submit, clear the input field then based on history and go to '/'
+    this.props.history.push("/");
   };
   render() {
     const { name, email, phone, errors } = this.state;
