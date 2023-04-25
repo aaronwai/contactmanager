@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 // we need to add consumer with reducer function
-import { Consumer } from "../context";
+import { Consumer } from "../../context";
 
 class Contact extends Component {
   // remove the propsType

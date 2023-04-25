@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Contact from "./Contact";
-import { Consumer } from "../context";
+// refactor the file path to one level up
+import { Consumer } from "../../context";
 export class Contacts extends Component {
   //  remove the delete function , remove the deleteClickHandler
 
