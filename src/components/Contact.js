@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types"; //impt as short cut
-// we want to add state changing content within the onShowClick(), but we need to go through the concept first
+import PropTypes from "prop-types";
+// we need to add consumer with reducer function
+import { Consumer } from "../context";
 
 class Contact extends Component {
+  // remove the propsType
   static propTypes = {
     contact: PropTypes.object.isRequired,
-    deleteClickHandler: PropTypes.func.isRequired,
   };
 
   state = {
@@ -14,35 +15,45 @@ class Contact extends Component {
   onShowClick = (e) => {
     this.setState({ showContactInfo: !this.state.showContactInfo });
   };
-  onDeleteClick = (e) => {
-    console.log("clicked");
-    this.props.deleteClickHandler();
+  onDeleteClick = (id, dispatch) => {
+    dispatch({ type: "DELETE_CONTACT", payload: id });
   };
   render() {
-    const { name, email, phone } = this.props.contact;
+    const { id, name, email, phone } = this.props.contact;
     const { showContactInfo } = this.state;
+    // add the consumer, purpose is add the dispatch function
+    // get the dispatch from contact state
+    //  bind the dispatch and id into the delete handler
+
     return (
-      <div className='card card-body mb-3'>
-        <h4>
-          {name}{" "}
-          <i
-            className='fas fa-sort-down'
-            style={{ cursor: "pointer" }}
-            onClick={this.onShowClick}
-          ></i>
-          <i
-            className='fas fa-times'
-            style={{ cursor: "pointer", float: "right", color: "red" }}
-            onClick={this.onDeleteClick}
-          ></i>
-        </h4>
-        {showContactInfo ? (
-          <ul className='list-group'>
-            <li className='list-group-item'>Email : {email}</li>
-            <li className='list-group-item'>Phone : {phone}</li>
-          </ul>
-        ) : null}
-      </div>
+      <Consumer>
+        {(value) => {
+          const { dispatch } = value;
+          return (
+            <div className='card card-body mb-3'>
+              <h4>
+                {name}{" "}
+                <i
+                  className='fas fa-sort-down'
+                  style={{ cursor: "pointer" }}
+                  onClick={this.onShowClick}
+                ></i>
+                <i
+                  className='fas fa-times'
+                  style={{ cursor: "pointer", float: "right", color: "red" }}
+                  onClick={this.onDeleteClick.bind(this, id, dispatch)}
+                ></i>
+              </h4>
+              {showContactInfo ? (
+                <ul className='list-group'>
+                  <li className='list-group-item'>Email : {email}</li>
+                  <li className='list-group-item'>Phone : {phone}</li>
+                </ul>
+              ) : null}
+            </div>
+          );
+        }}
+      </Consumer>
     );
   }
 }
