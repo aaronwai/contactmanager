@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-// we need to add consumer with reducer function
 import { Consumer } from "../../context";
+import axios from "axios";
 
 class Contact extends Component {
-  // remove the propsType
   static propTypes = {
     contact: PropTypes.object.isRequired,
   };
@@ -16,14 +15,14 @@ class Contact extends Component {
     this.setState({ showContactInfo: !this.state.showContactInfo });
   };
   onDeleteClick = (id, dispatch) => {
-    dispatch({ type: "DELETE_CONTACT", payload: id });
+    // use axios for delete and pass the id
+    axios
+      .delete(`https://jsonplaceholder.typicode.com/users/${id}`)
+      .then(dispatch({ type: "DELETE_CONTACT", payload: id }));
   };
   render() {
     const { id, name, email, phone } = this.props.contact;
     const { showContactInfo } = this.state;
-    // add the consumer, purpose is add the dispatch function
-    // get the dispatch from contact state
-    //  bind the dispatch and id into the delete handler
 
     return (
       <Consumer>
