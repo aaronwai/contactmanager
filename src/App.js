@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Contacts from "./components/contact/Contacts";
 import AddContact from "./components/contact/AddContact";
+import EditContact from "./components/contact/EditContact";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Provider } from "./context";
 import Header from "./components/layout/Header";
@@ -19,6 +20,7 @@ class App extends Component {
               <Switch>
                 <Route exact path='/' component={Contacts} />
                 <Route exact path='/contact/add' component={AddContact} />
+                <Route exact path='/contact/edit/:id' component={EditContact} />
                 <Route exact path='/about' component={About} />
                 <Route exact path='/test' component={Test} />
                 <Route component={NotFound} />
