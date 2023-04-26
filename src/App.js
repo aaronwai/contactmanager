@@ -7,12 +7,7 @@ import { Provider } from "./context";
 import Header from "./components/layout/Header";
 import About from "./components/pages/About";
 import NotFound from "./components/pages/NotFound";
-// Step 1 : import the rputer
-// Step 2 : remove the addcontact component for the time being, we will link the component with the route
-// Step 3 : wrap the router under the provider
-// Step 4 : add switch to accept the route
-// Step 5 : add about component so we add page folder for the each page with the component
-
+import Test from "./components/test/Test";
 class App extends Component {
   render() {
     return (
@@ -25,6 +20,7 @@ class App extends Component {
                 <Route exact path='/' component={Contacts} />
                 <Route exact path='/contact/add' component={AddContact} />
                 <Route exact path='/about' component={About} />
+                <Route exact path='/test' component={Test} />
                 <Route component={NotFound} />
               </Switch>
             </div>

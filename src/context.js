@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import axios from "axios";
 const Context = React.createContext();
 // add more action function for CRUD
 const reducer = (state, action) => {
@@ -22,23 +22,16 @@ const reducer = (state, action) => {
 };
 export class Provider extends Component {
   state = {
-    contacts: [
-      {
-        id: 1,
-        name: "John",
-        email: "a@a.com",
-        phone: "123-45678",
-      },
-      {
-        id: 2,
-        name: "Jack",
-        email: "b@b.com",
-        phone: "123-45678",
-      },
-    ],
+    contacts: [],
     dispatch: (action) => this.setState((state) => reducer(state, action)),
   };
-  // add reducer and dispatchers
+  componentDidMount() {
+    axios.get("https://jsonplaceholder.typicode.com/users").then((res) =>
+      this.setState({
+        contacts: res.data,
+      })
+    );
+  }
   render() {
     return (
       <Context.Provider value={this.state}>
